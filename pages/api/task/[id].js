@@ -1,6 +1,5 @@
-/* eslint-disable import/no-anonymous-default-export */
 import Task from '../../../models/Task'
-import dbConnect from '../../../utils/dbConnect'
+import dbConnect from '../../../utilities/dbConnect'
 
 export default async (req, res) => {
   const { method } = req

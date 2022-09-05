@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import Task from '../../../models/Task'
 import dbConnect from '../../../utilities/dbConnect'
 
@@ -8,27 +7,26 @@ export default async (req, res) => {
   // Connect to database
   await dbConnect()
 
-  // Create a new task
+  // Create task
   if (method === 'POST') {
     try {
-      const task = await Task.create(req.body)
+      const newTask = await new Task(req.body).save()
       res
         .status(201)
         .json({ data: newTask, message: 'Task added successfully' })
     } catch (error) {
-      res.status(500).json({ message: 'Internal server error' })
+      res.status(500).json({ message: 'Internal Server Error' })
+      console.log(error)
     }
   }
 
-  // Get all tasks
-  else if (method === 'GET') {
+  if (method === 'GET') {
     try {
-      const tasks = await Task.find({})
-      res
-        .status(200)
-        .json({ data: tasks, message: 'Tasks fetched successfully' })
+      const tasks = await Task.find()
+      res.status(200).json({ data: tasks })
     } catch (error) {
-      res.status(500).json({ message: 'Internal server error' })
+      res.status(500).json({ message: 'Internal Server Error' })
+      console.log(error)
     }
   }
 }
