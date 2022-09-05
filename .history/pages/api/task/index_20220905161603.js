@@ -1,4 +1,4 @@
-import Task from '../../../models/Task'
+import Tasks from '../../../models/Task'
 import dbConnect from '../../../utilities/dbConnect'
 
 export default async function aFunc(req, res) {
@@ -6,8 +6,6 @@ export default async function aFunc(req, res) {
 
   // Connect to database
   await dbConnect()
-
-  console.log(Task)
 
   // Create task
   if (method === 'POST') {
