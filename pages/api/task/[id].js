@@ -1,7 +1,7 @@
 import Task from '../../../models/Task'
 import dbConnect from '../../../utilities/dbConnect'
 
-export default async (req, res) => {
+export default async function otherFunc(req, res) {
   const { method } = req
   const { id } = req.query
 
